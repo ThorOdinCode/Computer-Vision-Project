@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="readme_img.png" alt="Computer Vision Project Cover" width="100%">
+  <img src="figures/readme_img.png" alt="Computer Vision Project Cover" width="100%">
 </p>
 
 # Computer-Vision-Project
