@@ -1,5 +1,13 @@
 # Computer-Vision-Project
 
+## Authors
+
+* Abrar Jawad Tarafder
+* Ekambir Momi
+* Thor Laski
+* Antonio Lamacchia
+* Emily Zelkowicz
+
 # Wide-Baseline Feature Matching: SIFT vs. ORB
 
 ## Overview
@@ -79,10 +87,3 @@ The following metrics are used to compare the two methods:
 
 ---
 
-## Authors
-
-* Abrar Jawad Tarafder
-* Ekambir Momi
-* Thor Laski
-* Antonio Lamacchia
-* Emily Zelkowicz
