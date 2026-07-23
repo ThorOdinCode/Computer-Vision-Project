@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="readme_img.png" alt="Computer Vision Project Cover" width="100%">
+</p>
+
 # Computer-Vision-Project
 
 ## Authors
@@ -82,7 +86,6 @@ The following metrics are used to compare the two methods:
 ├── figures/               # Report figures and visualizations
 ├── report/                # CVPR-style report
 ├── README.md
-└── requirements.txt
 ```
 
 ---
