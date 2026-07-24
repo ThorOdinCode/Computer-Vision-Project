@@ -8,27 +8,29 @@
 
 ## Authors
 
-* Abrar Jawad Tarafder
-* Ekambir Momi
-* Thor Laski
-* Antonio Lamacchia
-* Emily Zelkowicz
+- Abrar Jawad Tarafder
+- Ekambir Momi
+- Thor Laski
+- Antonio Lamacchia
+- Emily Zelkowicz
+
+---
 
 ## Overview
 
-This project compares two classical local feature matching algorithms, **Scale-Invariant Feature Transform (SIFT)** and **Oriented FAST and Rotated BRIEF (ORB)**, using the **HPatches** benchmark dataset. The objective is to evaluate each method's ability to establish reliable feature correspondences under changes in viewpoint and illumination while analyzing the trade-off between matching accuracy and computational efficiency.
+This project presents a comparative evaluation of two classical local feature matching algorithms, **Scale-Invariant Feature Transform (SIFT)** and **Oriented FAST and Rotated BRIEF (ORB)**, using the **HPatches** benchmark dataset. The objective is to evaluate each method's ability to establish reliable feature correspondences under changes in viewpoint and illumination while examining the trade-off between matching robustness and computational efficiency.
 
-Feature matching is a fundamental task in computer vision and serves as the foundation for applications such as image registration, panorama stitching, visual localization, Structure-from-Motion (SfM), and Simultaneous Localization and Mapping (SLAM). By evaluating SIFT and ORB under identical conditions, this project provides a direct comparison of two widely used handcrafted feature descriptors.
+Local feature matching is a fundamental task in computer vision and forms the basis of numerous applications, including image registration, panorama stitching, visual localization, Structure-from-Motion (SfM), simultaneous localization and mapping (SLAM), and 3D reconstruction. By evaluating SIFT and ORB under identical experimental conditions, this project provides a fair comparison of two widely used handcrafted feature extraction methods.
 
 ---
 
 ## Objectives
 
-* Implement feature matching pipelines using **SIFT** and **ORB**.
-* Evaluate both methods using the **HPatches** benchmark.
-* Compare matching robustness under viewpoint and illumination changes.
-* Measure matching accuracy and computational performance.
-* Analyze the strengths and limitations of each approach.
+- Implement feature matching pipelines using **SIFT** and **ORB**.
+- Evaluate both methods using the **HPatches** benchmark dataset.
+- Compare feature matching robustness under viewpoint and illumination changes.
+- Measure matching accuracy and computational performance.
+- Analyze the trade-off between matching robustness and computational efficiency.
 
 ---
 
@@ -37,20 +39,20 @@ Feature matching is a fundamental task in computer vision and serves as the foun
 The feature matching pipeline consists of the following stages:
 
 1. Image preprocessing
-2. Keypoint detection
-3. Descriptor extraction
-4. Descriptor matching
-5. Match filtering using Lowe's ratio test
-6. Geometric verification using ground-truth homographies
+2. Feature extraction (SIFT / ORB)
+3. Feature matching
+4. Best correspondence selection using Lowe's ratio test
+5. Affine transformation estimation
+6. Geometric verification
 7. Performance evaluation
 
-Both SIFT and ORB are evaluated using the same images, matching strategy, and evaluation criteria to ensure a fair comparison.
+Both SIFT and ORB are evaluated using the same image pairs, preprocessing pipeline, matching strategy, and evaluation criteria to ensure a fair comparison.
 
 ---
 
 ## Dataset
 
-Experiments are conducted using the **HPatches** benchmark dataset, which contains image sequences exhibiting controlled **viewpoint** and **illumination** changes. Each sequence includes ground-truth homography matrices that enable objective evaluation of feature matching accuracy.
+Experiments are conducted using the **HPatches** benchmark dataset, which contains image sequences exhibiting controlled **viewpoint** and **illumination** changes. Each sequence includes ground-truth homography matrices that enable objective evaluation of feature matching performance.
 
 ---
 
@@ -58,22 +60,21 @@ Experiments are conducted using the **HPatches** benchmark dataset, which contai
 
 The following metrics are used to compare the two methods:
 
-* Precision
-* Recall
-* Mean Matching Accuracy (MMA)
-* Reprojection Error
-* Number of Detected Keypoints
-* Number of Valid Matches
-* Runtime
+- Number of Detected Keypoints
+- Precision
+- Recall
+- Mean Matching Accuracy (MMA)
+- Reprojection Error
+- Runtime
 
 ---
 
 ## Technologies
 
-* Python
-* OpenCV
-* NumPy
-* Matplotlib
+- Python
+- OpenCV
+- NumPy
+- Matplotlib
 
 ---
 
@@ -83,10 +84,12 @@ The following metrics are used to compare the two methods:
 .
 ├── code/                  # Source code
 ├── data/                  # HPatches dataset
-├── figures/               # Report figures and visualizations
-├── report/                # CVPR-style report
-├── README.md
+├── figures/               # Figures and visualizations
+├── report/                # LaTeX source and final report
+└── README.md
 ```
+
+---
 
 ## Report Structure
 
@@ -139,9 +142,10 @@ The following metrics are used to compare the two methods:
         - Runtime Comparison
 
     4.5 Discussion
-
-
 ```
 
 ---
 
+## License
+
+This repository was developed as part of the **EECS 4422: Computer Vision** course at **York University** during **Summer 2026**. It is intended for educational and academic purposes.
