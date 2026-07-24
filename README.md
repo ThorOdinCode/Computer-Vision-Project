@@ -2,7 +2,9 @@
   <img src="figures/readme_img.png" alt="Computer Vision Project Cover" width="100%">
 </p>
 
-# Computer-Vision-Project
+# EECS 4422: Computer Vision | Summer 2026 Project Report
+
+## A Comparative Study of SIFT and ORB for Wide-Baseline Feature Matching
 
 ## Authors
 
