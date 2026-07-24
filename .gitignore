@@ -1,0 +1,9 @@
+# Downloaded HPatches data (large, reproducible artifacts)
+/data/hpatches-sequences-release/
+/data/hpatches-sequences-release.zip
+/data/hpatches-benchmark-master/
+
+# Python-generated files
+__pycache__/
+*.py[cod]
+
