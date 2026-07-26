@@ -52,10 +52,8 @@ def load_image(sequence, image_type):
     """
     Load the stacked HPatches image.
 
-    Example:
-        ref.png
-        e1.png
-        h3.png
+    Returns:
+        RGB image as numpy array
     """
 
     if image_type not in VALID_IMAGE_TYPES:
@@ -71,6 +69,12 @@ def load_image(sequence, image_type):
 
     if image is None:
         raise FileNotFoundError(path)
+
+    # OpenCV loads images as BGR, convert to RGB
+    image = cv2.cvtColor(
+        image,
+        cv2.COLOR_BGR2RGB
+    )
 
     return image
 

@@ -56,6 +56,8 @@ def main():
     print("  target_patch_0.png")
     print("  ref_patch_100.png")
     print("  target_patch_100.png")
+    print("\nFirst pixel RGB values:")
+    print(ref_stack[0,0])
 
 
 if __name__ == "__main__":
