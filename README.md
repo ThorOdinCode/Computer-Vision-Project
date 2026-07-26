@@ -82,8 +82,8 @@ The following metrics are used to compare the two methods:
 
 ```text
 .
-├── code/                  # Source code
-├── data/                  # HPatches dataset
+├── project/               # Source code
+├── data/                  # HPatches dataset is in gitignore
 ├── figures/               # Figures and visualizations
 ├── report/                # LaTeX source and final report
 └── README.md
