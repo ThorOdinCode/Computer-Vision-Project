@@ -22,7 +22,7 @@ from data_loader import list_image_sequences, load_sequence_image
 DEFAULT_SAMPLE_SEQUENCE = "i_ajuntament"
 DEFAULT_SAMPLE_IMAGE_IDS = (1, 2, 3, 4, 5)
 DEFAULT_MAX_POINTS = 150
-DEFAULT_OUTPUT_DIR = REPO_ROOT / "figures" / "sift_samples"
+DEFAULT_OUTPUT_DIR = REPO_ROOT / "project" / "SIFT" / "sift_samples"
 HPATCHES_IMAGE_IDS = range(1, 7)
 
 
