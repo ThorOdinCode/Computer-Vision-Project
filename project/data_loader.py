@@ -2,23 +2,40 @@ import os
 import cv2
 import numpy as np
 
+
 # =============================================================================
-# Dataset Configuration
+# Dataset Paths
 # =============================================================================
 
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 
-DATASET_PATH = os.path.abspath(
+
+# Patch dataset (65x65 patches)
+PATCH_DATASET_PATH = os.path.abspath(
     os.path.join(
         THIS_DIR,
         "..",
         "hpatches-benchmark",
         "data",
-        "hpatches-release",
+        "hpatches-release"
     )
 )
 
+
+# Full image sequence dataset
+SEQUENCE_DATASET_PATH = os.path.abspath(
+    os.path.join(
+        THIS_DIR,
+        "..",
+         "hpatches-benchmark",
+         "data",
+        "hpatches-sequences-release"
+    )
+)
+
+
 PATCH_SIZE = 65
+
 
 VALID_IMAGE_TYPES = [
     "ref",
@@ -29,150 +46,237 @@ VALID_IMAGE_TYPES = [
 
 
 # =============================================================================
-# Dataset Utilities
+# PATCH DATASET FUNCTIONS
 # =============================================================================
 
-def list_sequences():
-    """Return all HPatches sequence names."""
 
-    if not os.path.exists(DATASET_PATH):
-        raise FileNotFoundError(DATASET_PATH)
+def list_patch_sequences():
+
+    if not os.path.exists(PATCH_DATASET_PATH):
+        raise FileNotFoundError(PATCH_DATASET_PATH)
 
     sequences = [
-        seq for seq in os.listdir(DATASET_PATH)
-        if os.path.isdir(os.path.join(DATASET_PATH, seq))
+        seq for seq in os.listdir(PATCH_DATASET_PATH)
+        if os.path.isdir(
+            os.path.join(PATCH_DATASET_PATH, seq)
+        )
     ]
 
-    sequences.sort()
-
-    return sequences
+    return sorted(sequences)
 
 
-def load_image(sequence, image_type):
-    """
-    Load the stacked HPatches image.
 
-    Returns:
-        RGB image as numpy array
-    """
+def load_patch_image(sequence, image_type):
 
     if image_type not in VALID_IMAGE_TYPES:
-        raise ValueError(f"Invalid image type: {image_type}")
+        raise ValueError(
+            f"Invalid image type: {image_type}"
+        )
+
 
     path = os.path.join(
-        DATASET_PATH,
+        PATCH_DATASET_PATH,
         sequence,
         image_type + ".png"
     )
 
+
     image = cv2.imread(path)
+
 
     if image is None:
         raise FileNotFoundError(path)
 
-    # OpenCV loads images as BGR, convert to RGB
+
+    # BGR -> RGB
+
     image = cv2.cvtColor(
         image,
         cv2.COLOR_BGR2RGB
     )
 
+
     return image
 
 
+
 def split_into_patches(stacked_image):
-    """
-    Split a stacked HPatches image into individual 65x65 patches.
-    """
 
     height = stacked_image.shape[0]
 
+
     if height % PATCH_SIZE != 0:
         raise ValueError(
-            "Image height is not divisible by patch size."
+            "Invalid stacked image size"
         )
 
-    num_patches = height // PATCH_SIZE
 
     patches = []
 
-    for i in range(num_patches):
+
+    for i in range(height // PATCH_SIZE):
 
         start = i * PATCH_SIZE
         end = start + PATCH_SIZE
 
-        patch = stacked_image[start:end, :, :]
+        patches.append(
+            stacked_image[start:end,:,:]
+        )
 
-        patches.append(patch)
 
     return patches
 
 
+
 def load_patches(sequence, image_type):
-    """
-    Load a sequence and return a list of patches.
 
-    Returns:
-        List[np.ndarray]
-    """
+    image = load_patch_image(
+        sequence,
+        image_type
+    )
 
-    stacked = load_image(sequence, image_type)
-
-    return split_into_patches(stacked)
+    return split_into_patches(image)
 
 
-def load_homography(sequence, target):
-    """
-    Load the ground-truth homography.
-    """
+
+def load_patch_homography(sequence, target):
 
     if target == "ref":
         return np.eye(3)
 
+
     number = target[1:]
 
+
     path = os.path.join(
-        DATASET_PATH,
+        PATCH_DATASET_PATH,
         sequence,
         f"H_ref_{number}"
     )
 
-    H = np.loadtxt(
+
+    return np.loadtxt(
         path,
         delimiter=","
     )
 
-    return H
-
-
-def load_pair(sequence, target):
-    """
-    Returns stacked images.
-
-    Returns:
-        reference_stack
-        target_stack
-        homography
-    """
-
-    ref = load_image(sequence, "ref")
-    target_img = load_image(sequence, target)
-    H = load_homography(sequence, target)
-
-    return ref, target_img, H
 
 
 def load_patch_pair(sequence, target):
-    """
-    Returns lists of corresponding patches.
 
-    Returns:
-        ref_patches
-        target_patches
-        homography
-    """
+    ref = load_patch_image(
+        sequence,
+        "ref"
+    )
 
-    ref = load_patches(sequence, "ref")
-    target_img = load_patches(sequence, target)
-    H = load_homography(sequence, target)
 
-    return ref, target_img, H
+    target_image = load_patch_image(
+        sequence,
+        target
+    )
+
+
+    H = load_patch_homography(
+        sequence,
+        target
+    )
+
+
+    return ref, target_image, H
+
+
+
+# =============================================================================
+# FULL IMAGE SEQUENCE DATASET FUNCTIONS
+# =============================================================================
+
+
+def list_image_sequences():
+
+    if not os.path.exists(SEQUENCE_DATASET_PATH):
+        raise FileNotFoundError(
+            SEQUENCE_DATASET_PATH
+        )
+
+
+    sequences = [
+        seq for seq in os.listdir(SEQUENCE_DATASET_PATH)
+        if os.path.isdir(
+            os.path.join(
+                SEQUENCE_DATASET_PATH,
+                seq
+            )
+        )
+    ]
+
+
+    return sorted(sequences)
+
+
+
+def load_sequence_image(sequence, image_number):
+
+    path = os.path.join(
+        SEQUENCE_DATASET_PATH,
+        sequence,
+        f"{image_number}.ppm"
+    )
+
+
+    image = cv2.imread(path)
+
+
+    if image is None:
+        raise FileNotFoundError(path)
+
+
+    # BGR -> RGB
+
+    image = cv2.cvtColor(
+        image,
+        cv2.COLOR_BGR2RGB
+    )
+
+
+    return image
+
+
+
+def load_sequence_homography(sequence, target):
+
+    if target == 1:
+        return np.eye(3)
+
+
+    path = os.path.join(
+        SEQUENCE_DATASET_PATH,
+        sequence,
+        f"H_1_{target}"
+    )
+
+
+    return np.loadtxt(path)
+
+
+
+def load_sequence_pair(sequence, target):
+
+    reference = load_sequence_image(
+        sequence,
+        1
+    )
+
+
+    target_image = load_sequence_image(
+        sequence,
+        target
+    )
+
+
+    H = load_sequence_homography(
+        sequence,
+        target
+    )
+
+
+    return reference, target_image, H
