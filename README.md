@@ -99,6 +99,7 @@ The following metrics are used to compare the two methods:
 2. Dataset
     2.1 HPatches Benchmark
     2.2 Image Preparation
+    2.3 Data Loader
 
 3. Methodology
     3.1 Overall Pipeline
@@ -118,7 +119,7 @@ The following metrics are used to compare the two methods:
 
 4. Results and Discussion
 
-    4.1 Feature Detection Results
+    4.1 Feature Detection Comparison
         - Number of Detected Keypoints
         - Detection Examples
 
