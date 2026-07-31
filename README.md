@@ -112,11 +112,7 @@ The following metrics are used to compare the two methods:
         3.3.2 ORB Matching
         3.3.3 Best Correspondence Selection
 
-    3.4 Affine Transformation
-        3.4.1 SIFT
-        3.4.2 ORB
-
-    3.5 Geometric Verification
+    3.4 Geometric Verification
         3.5.1 SIFT
         3.5.2 ORB
 
