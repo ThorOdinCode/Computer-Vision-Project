@@ -121,7 +121,6 @@ The following metrics are used to compare the two methods:
 
     4.1 Feature Detection Comparison
         - Number of Detected Keypoints
-        - Detection Examples
 
     4.2 Feature Matching Results
         - Precision
@@ -129,11 +128,9 @@ The following metrics are used to compare the two methods:
         - Mean Matching Accuracy (MMA)
 
     4.3 Transformation and Robustness Results
-        - Affine Transformation
         - Reprojection Error
         - Viewpoint Changes
         - Illumination Changes
-        - Success and Failure Cases
 
     4.4 Performance Analysis
         - Runtime Comparison
