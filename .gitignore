@@ -1,2 +1,5 @@
 # Ignore HPatches benchmark repo
 hpatches-benchmark/
+hpatches-sequences-release/
+.idea/
+*.pyc
