@@ -8,7 +8,6 @@ from pathlib import Path
 import cv2
 import numpy as np
 
-
 import matplotlib.pyplot as plt
 
 
@@ -462,9 +461,9 @@ def evaluate_pair(
         inlier_threshold,
     )
 
-    # Visualize the geometrically-verified (inlier) matches rather than
-    # just the strongest-by-descriptor-distance matches -- these are the
-    # ones we'd actually trust, which isn't always the same set.
+    # Visualize the inlier matches rather than just the strongest
+    # by descriptor distance matches. These are the ones we'd
+    # actually trust, which isn't always the same set.
     inlier_matches = [
         match
         for match, is_inlier in zip(final_matches, metrics["inlier_mask"])
