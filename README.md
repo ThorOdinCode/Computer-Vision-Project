@@ -5,7 +5,7 @@
 # EECS 4422: Computer Vision | Summer 2026 Project Report
 
 # A Comparative Study of SIFT and ORB for Wide-Baseline Feature Matching
-
+  
 ## Authors
 
 - Abrar Jawad Tarafder
@@ -99,6 +99,7 @@ The following metrics are used to compare the two methods:
 2. Dataset
     2.1 HPatches Benchmark
     2.2 Image Preparation
+    2.3 Data Loader
 
 3. Methodology
     3.1 Overall Pipeline
@@ -112,19 +113,14 @@ The following metrics are used to compare the two methods:
         3.3.2 ORB Matching
         3.3.3 Best Correspondence Selection
 
-    3.4 Affine Transformation
-        3.4.1 SIFT
-        3.4.2 ORB
-
-    3.5 Geometric Verification
+    3.4 Homography-Based Geometric Verification
         3.5.1 SIFT
         3.5.2 ORB
 
 4. Results and Discussion
 
-    4.1 Feature Detection Results
+    4.1 Feature Detection Comparison
         - Number of Detected Keypoints
-        - Detection Examples
 
     4.2 Feature Matching Results
         - Precision
@@ -132,11 +128,9 @@ The following metrics are used to compare the two methods:
         - Mean Matching Accuracy (MMA)
 
     4.3 Transformation and Robustness Results
-        - Affine Transformation
         - Reprojection Error
         - Viewpoint Changes
         - Illumination Changes
-        - Success and Failure Cases
 
     4.4 Performance Analysis
         - Runtime Comparison
