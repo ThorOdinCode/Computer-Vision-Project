@@ -18,78 +18,140 @@
 
 ## Overview
 
-This project presents a comparative evaluation of two classical local feature matching algorithms, **Scale-Invariant Feature Transform (SIFT)** and **Oriented FAST and Rotated BRIEF (ORB)**, using the **HPatches** benchmark dataset. The objective is to evaluate each method's ability to establish reliable feature correspondences under changes in viewpoint and illumination while examining the trade-off between matching robustness and computational efficiency.
+Local feature matching is a core building block for image registration, panorama stitching, visual localization, Structure-from-Motion, SLAM, and 3D reconstruction. This project is a side-by-side evaluation of two classical local feature pipelines, **Scale-Invariant Feature Transform (SIFT)** and **Oriented FAST and Rotated BRIEF (ORB)**, on the **HPatches** benchmark. The goal is to measure how well each method detects, describes, matches, and geometrically verifies correspondences under viewpoint and illumination changes, while also tracking the computational cost of the full pipeline.
 
-Local feature matching is a fundamental task in computer vision and forms the basis of numerous applications, including image registration, panorama stitching, visual localization, Structure-from-Motion (SfM), simultaneous localization and mapping (SLAM), and 3D reconstruction. By evaluating SIFT and ORB under identical experimental conditions, this project provides a fair comparison of two widely used handcrafted feature extraction methods.
+The repository includes the full OpenCV-based implementation for feature extraction, descriptor matching, homography-based geometric verification, and batch evaluation scripts that generate the figures and summary files used in the report. The same HPatches data, preprocessing, matching strategy, and scoring logic are reused across both methods so the comparison stays fair and reproducible.
 
----
+## Project Goals
 
-## Objectives
+- Implement practical SIFT and ORB matching pipelines from scratch in Python.
+- Evaluate both methods on HPatches sequences with illumination and viewpoint changes.
+- Compare matching quality using precision, recall proxy, Mean Matching Accuracy (MMA), and reprojection error.
+- Compare speed and resource cost alongside matching robustness.
+- Produce visual outputs that make the results easy to inspect and present.
 
-- Implement feature matching pipelines using **SIFT** and **ORB**.
-- Evaluate both methods using the **HPatches** benchmark dataset.
-- Compare feature matching robustness under viewpoint and illumination changes.
-- Measure matching accuracy and computational performance.
-- Analyze the trade-off between matching robustness and computational efficiency.
+## Method Pipeline
 
----
-
-## Methodology
-
-The feature matching pipeline consists of the following stages:
-
-1. Image preprocessing
-2. Feature extraction (SIFT / ORB)
-3. Feature matching
-4. Best correspondence selection using Lowe's ratio test
-5. Affine transformation estimation
-6. Geometric verification
-7. Performance evaluation
-
-Both SIFT and ORB are evaluated using the same image pairs, preprocessing pipeline, matching strategy, and evaluation criteria to ensure a fair comparison.
-
----
+1. Load a reference image and a target image from HPatches.
+2. Convert the images to grayscale and detect keypoints / compute descriptors with SIFT or ORB.
+3. Match descriptors with a brute-force matcher and Lowe's ratio test.
+4. Keep only mutual-best correspondences.
+5. Project reference keypoints with the ground-truth homography.
+6. Score the matches using geometric consistency metrics.
+7. Save visualizations, summary plots, and benchmark outputs.
 
 ## Dataset
 
-Experiments are conducted using the **HPatches** benchmark dataset, which contains image sequences exhibiting controlled **viewpoint** and **illumination** changes. Each sequence includes ground-truth homography matrices that enable objective evaluation of feature matching performance.
-
----
+- `hpatches-release`: patch-based HPatches data used by the extraction utilities.
+- `hpatches-sequences-release`: full HPatches image sequences and homographies used for matching and verification.
+- The loader expects both datasets under `data/` at the repository root, matching the paths in `project/data_loader.py`.
+- HPatches contains 116 sequences in total: 59 viewpoint sequences and 57 illumination sequences.
+- Each sequence provides one reference image and five transformed images, together with ground-truth homographies for the transformed views.
 
 ## Evaluation Metrics
 
-The following metrics are used to compare the two methods:
+- Number of detected keypoints.
+- Precision: correct matches divided by total accepted matches.
+- Recall proxy: correct matches divided by visible reference keypoints.
+- Mean Matching Accuracy (MMA): average accuracy across reprojection thresholds.
+- Mean reprojection error: average pixel error after homography projection.
+- Runtime: feature extraction or matching wall-clock time, depending on the script.
 
-- Number of Detected Keypoints
-- Precision
-- Recall
-- Mean Matching Accuracy (MMA)
-- Reprojection Error
-- Runtime
+## Current Benchmark Snapshot
 
----
+The generated full-benchmark summaries in this repository cover 580 reference/test pairs across 116 HPatches sequences.
 
-## Technologies
+- SIFT overall: precision `0.786`, recall `0.177`, MMA `0.763`.
+- ORB overall: precision `0.715`, recall `0.130`, MMA `0.679`.
+- Full sweep runtime in the generated summaries: SIFT about `449.7` seconds, ORB about `13.7` seconds.
+
+These figures capture the main trade-off of the project: SIFT is stronger geometrically, while ORB is much faster.
+
+## Repository Structure
+
+```text
+.
+├── figures/
+│   └── readme_img.png
+├── project/
+│   ├── data_loader.py
+│   ├── SIFT/
+│   │   ├── feature_extraction.py
+│   │   ├── feature_matching.py
+│   │   └── homography_verification.py
+│   ├── ORB/
+│   │   ├── feature_extraction.py
+│   │   └── feature_matching.py
+│   ├── sift_evaluation/
+│   │   ├── extraction_evaluation.py
+│   │   ├── matching_evaluation.py
+│   │   └── full_matching_evaluation.py
+│   └── orb_evaluation/
+│       ├── matching_evaluation.py
+│       └── full_matching_evaluation.py
+├── report/
+└── README.md
+```
+
+## Setup
+
+1. Create and activate a Python virtual environment.
+2. Install the runtime dependencies:
+
+```bash
+pip install numpy matplotlib opencv-contrib-python
+```
+
+3. Download the HPatches datasets and place them under:
+
+```text
+data/hpatches-release
+data/hpatches-sequences-release
+```
+
+4. If your dataset lives elsewhere, update the paths in `project/data_loader.py`.
+
+## Implementation Stack
 
 - Python
 - OpenCV
 - NumPy
 - Matplotlib
 
----
+## How To Run
 
-## Repository Structure
+Run the scripts from the repository root.
 
-```text
-.
-├── project/               # Source code
-├── data/                  # HPatches dataset is in gitignore
-├── figures/               # Figures and visualizations
-├── report/                # LaTeX source and final report
-└── README.md
-```
+### SIFT demos
 
----
+- `python project/SIFT/feature_extraction.py`
+- `python project/SIFT/feature_matching.py`
+- `python project/SIFT/homography_verification.py`
+
+### ORB demos
+
+- `python project/ORB/feature_extraction.py`
+- `python project/ORB/feature_matching.py`
+
+### Focused evaluation scripts
+
+- `python project/sift_evaluation/extraction_evaluation.py`
+- `python project/sift_evaluation/matching_evaluation.py`
+- `python project/sift_evaluation/full_matching_evaluation.py`
+- `python project/orb_evaluation/matching_evaluation.py`
+- `python project/orb_evaluation/full_matching_evaluation.py`
+
+Each script exposes additional CLI flags such as `--lighting-sequence`, `--viewpoint-sequence`, `--reference-image`, `--test-image`, `--ratio`, `--top-k`, and `--output-dir`. Use `--help` to see the full list.
+
+## Generated Outputs
+
+The repository already includes representative figures and summaries produced by the scripts above.
+
+- `project/SIFT/extraction_samples/` and `project/ORB/extraction_samples/`: keypoint visualizations for viewpoint and illumination sequences.
+- `project/SIFT/matching/` and `project/ORB/matching/`: example match visualizations for selected pairs.
+- `project/SIFT/homography/`: verification plots, including reprojection errors and MMA curves.
+- `project/*_evaluation/figures/`: aggregated plots for the focused and full-benchmark evaluations.
+- `project/*_evaluation/results/`: CSV and JSON summaries from the full HPatches sweeps.
 
 ## Report Structure
 
