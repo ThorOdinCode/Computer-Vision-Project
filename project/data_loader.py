@@ -6,36 +6,33 @@ import numpy as np
 # =============================================================================
 # Dataset Paths
 # =============================================================================
+"""
+I had to change the path of the data set here because mine was different
+"""
 
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
-
 
 # Patch dataset (65x65 patches)
 PATCH_DATASET_PATH = os.path.abspath(
     os.path.join(
         THIS_DIR,
         "..",
-        "hpatches-benchmark",
         "data",
         "hpatches-release"
     )
 )
-
 
 # Full image sequence dataset
 SEQUENCE_DATASET_PATH = os.path.abspath(
     os.path.join(
         THIS_DIR,
         "..",
-         "hpatches-benchmark",
          "data",
         "hpatches-sequences-release"
     )
 )
 
-
 PATCH_SIZE = 65
-
 
 VALID_IMAGE_TYPES = [
     "ref",
@@ -110,9 +107,7 @@ def split_into_patches(stacked_image):
             "Invalid stacked image size"
         )
 
-
     patches = []
-
 
     for i in range(height // PATCH_SIZE):
 
@@ -127,7 +122,6 @@ def split_into_patches(stacked_image):
     return patches
 
 
-
 def load_patches(sequence, image_type):
 
     image = load_patch_image(
@@ -136,7 +130,6 @@ def load_patches(sequence, image_type):
     )
 
     return split_into_patches(image)
-
 
 
 def load_patch_homography(sequence, target):
@@ -154,12 +147,10 @@ def load_patch_homography(sequence, target):
         f"H_ref_{number}"
     )
 
-
     return np.loadtxt(
         path,
         delimiter=","
     )
-
 
 
 def load_patch_pair(sequence, target):
@@ -169,18 +160,15 @@ def load_patch_pair(sequence, target):
         "ref"
     )
 
-
     target_image = load_patch_image(
         sequence,
         target
     )
 
-
     H = load_patch_homography(
         sequence,
         target
     )
-
 
     return ref, target_image, H
 
@@ -237,9 +225,7 @@ def load_sequence_image(sequence, image_number):
         cv2.COLOR_BGR2RGB
     )
 
-
     return image
-
 
 
 def load_sequence_homography(sequence, target):
@@ -254,9 +240,7 @@ def load_sequence_homography(sequence, target):
         f"H_1_{target}"
     )
 
-
     return np.loadtxt(path)
-
 
 
 def load_sequence_pair(sequence, target):
@@ -266,17 +250,14 @@ def load_sequence_pair(sequence, target):
         1
     )
 
-
     target_image = load_sequence_image(
         sequence,
         target
     )
 
-
     H = load_sequence_homography(
         sequence,
         target
     )
-
 
     return reference, target_image, H
