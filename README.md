@@ -63,7 +63,7 @@ The generated full-benchmark summaries in this repository cover 580 reference/te
 
 - SIFT overall: precision `0.786`, recall `0.177`, MMA `0.763`.
 - ORB overall: precision `0.715`, recall `0.130`, MMA `0.679`.
-- Full sweep runtime in the generated summaries: SIFT about `200-300` seconds, ORB about `13.7` seconds.
+- Full sweep runtime in the generated summaries: SIFT about `200-300` seconds, ORB about `13-15` seconds.
 
 These figures capture the main trade-off of the project: SIFT is stronger geometrically, while ORB is much faster.
 
