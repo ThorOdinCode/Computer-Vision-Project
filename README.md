@@ -46,7 +46,7 @@ The repository includes the full OpenCV-based implementation for feature extract
 - `hpatches-sequences-release`: full HPatches image sequences and homographies used for matching and verification.
 - The loader expects both datasets under `data/` at the repository root, matching the paths in `project/data_loader.py`.
 - HPatches contains 116 sequences in total: 59 viewpoint sequences and 57 illumination sequences.
-- Each sequence provides one reference image and five transformed images, together with ground-truth homographies for the transformed views.
+- Each sequence provides one reference image (`1.ppm`) and five transformed images (`2.ppm` through `6.ppm`), together with ground-truth homographies for the transformed views.
 
 ## Evaluation Metrics
 
@@ -59,11 +59,11 @@ The repository includes the full OpenCV-based implementation for feature extract
 
 ## Current Benchmark Snapshot
 
-The generated full-benchmark summaries in this repository cover 580 reference/test pairs across 116 HPatches sequences.
+The generated full-benchmark summaries in this repository cover 580 reference/test pairs across 116 HPatches sequences. This comes directly from evaluating the reference image against the five transformed images in each sequence: `116 × 5 = 580` pairs.
 
 - SIFT overall: precision `0.786`, recall `0.177`, MMA `0.763`.
 - ORB overall: precision `0.715`, recall `0.130`, MMA `0.679`.
-- Full sweep runtime in the generated summaries: SIFT about `200-300` seconds, ORB about `13-15` seconds.
+- Full sweep runtime in the generated summaries: SIFT about `449.7` seconds, ORB about `13.7` seconds.
 
 These figures capture the main trade-off of the project: SIFT is stronger geometrically, while ORB is much faster.
 
