@@ -165,39 +165,40 @@ The repository already includes representative figures and summaries produced by
 
 3. Methodology
     3.1 Overall Pipeline
-
     3.2 Feature Extraction
         3.2.1 SIFT
         3.2.2 ORB
-
     3.3 Feature Matching
         3.3.1 SIFT Matching
         3.3.2 ORB Matching
         3.3.3 Best Correspondence Selection
-
     3.4 Homography-Based Geometric Verification
-        3.5.1 SIFT
-        3.5.2 ORB
+        3.4.1 Results
+        3.4.2 Interpretation
 
-4. Results and Discussion
-
+4. Results, Evaluation and Discussion
     4.1 Feature Detection Comparison
-        - Number of Detected Keypoints
-
-    4.2 Feature Matching Results
-        - Precision
-        - Recall
-        - Mean Matching Accuracy (MMA)
-
-    4.3 Transformation and Robustness Results
-        - Reprojection Error
-        - Viewpoint Changes
-        - Illumination Changes
-
+        4.1.1 Number of Detected Keypoints in SIFT
+        4.1.2 Number of Detected Keypoints in ORB
+    4.2 Feature Matching Comparison
+        4.2.1 Precision for SIFT
+        4.2.2 Precision for ORB
+        4.2.3 Recall for SIFT
+        4.2.4 Recall for ORB
+        4.2.5 Mean Matching Accuracy (MMA) for SIFT
+        4.2.6 Mean Matching Accuracy (MMA) for ORB
+    4.3 Robustness Results
+        4.3.1 Reprojection Error for SIFT
+        4.3.2 Reprojection Error for ORB
+        4.3.3 Viewpoint Changes for SIFT
+        4.3.4 Viewpoint Changes for ORB
+        4.3.5 Illumination Changes for SIFT
+        4.3.6 Illumination Changes for ORB
     4.4 Performance Analysis
-        - Runtime Comparison
+        4.4.1 Runtime Comparison of SIFT vs. ORB
+    4.5 Discussion about SIFT vs. ORB
 
-    4.5 Discussion
+5. References
 ```
 
 ---
