@@ -6,7 +6,7 @@
 
 # A Comparative Study of SIFT and ORB for Wide-Baseline Feature Matching
   
-## Authors
+## Authors / Group Members
 
 - Abrar Jawad Tarafder
 - Ekambir Momi
