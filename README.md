@@ -69,6 +69,8 @@ These figures capture the main trade-off of the project: SIFT is stronger geomet
 
 ## Repository Structure
 
+The tree below reflects the main source, evaluation, and generated-output folders currently in the repository.
+
 ```text
 .
 ├── figures/
@@ -78,20 +80,66 @@ These figures capture the main trade-off of the project: SIFT is stronger geomet
 │   ├── SIFT/
 │   │   ├── feature_extraction.py
 │   │   ├── feature_matching.py
-│   │   └── homography_verification.py
+│   │   ├── homography_verification.py
+│   │   ├── extraction_samples/
+│   │   ├── matching/
+│   │   └── homography/
 │   ├── ORB/
 │   │   ├── feature_extraction.py
-│   │   └── feature_matching.py
+│   │   ├── feature_extraction_max.py
+│   │   ├── feature_matching.py
+│   │   ├── extraction_samples/
+│   │   ├── extraction_samples_max/
+│   │   └── matching/
 │   ├── sift_evaluation/
 │   │   ├── extraction_evaluation.py
 │   │   ├── matching_evaluation.py
-│   │   └── full_matching_evaluation.py
+│   │   ├── full_matching_evaluation.py
+│   │   ├── figures/
+│   │   └── results/
 │   └── orb_evaluation/
 │       ├── matching_evaluation.py
-│       └── full_matching_evaluation.py
+│       ├── full_matching_evaluation.py
+│       ├── figures/
+│       └── results/
 ├── report/
+│   └── test.txt
 └── README.md
 ```
+
+## Visual Comparison
+
+These examples use the same sequence names and pair IDs so the SIFT and ORB outputs can be compared directly.
+
+### Feature Extraction
+
+<table>
+  <tr>
+    <td width="50%">
+      <img src="project/SIFT/extraction_samples/viewpoint/v_bark_sift_grid.png" alt="SIFT extraction sample" width="100%">
+      <p align="center"><strong>SIFT</strong></p>
+    </td>
+    <td width="50%">
+      <img src="project/ORB/extraction_samples/viewpoint/v_bark_orb_grid.png" alt="ORB extraction sample" width="100%">
+      <p align="center"><strong>ORB</strong></p>
+    </td>
+  </tr>
+</table>
+
+### Matching Example
+
+<table>
+  <tr>
+    <td width="50%">
+      <img src="project/SIFT/matching/viewpoint/v_bark_ref1_test2_top10.png" alt="SIFT matching sample" width="100%">
+      <p align="center"><strong>SIFT</strong></p>
+    </td>
+    <td width="50%">
+      <img src="project/ORB/matching/viewpoint/v_bark_ref1_test2_top10.png" alt="ORB matching sample" width="100%">
+      <p align="center"><strong>ORB</strong></p>
+    </td>
+  </tr>
+</table>
 
 ## Setup
 
