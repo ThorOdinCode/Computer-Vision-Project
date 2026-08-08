@@ -249,6 +249,55 @@ The repository already includes representative figures and summaries produced by
 5. References
 ```
 
+## Results Summary
+
+These plots give a quick visual read on the full-benchmark behavior of the two pipelines. SIFT is generally stronger geometrically, while ORB stays lighter and faster to compute.
+
+### Mean Matching Accuracy
+
+<table>
+  <tr>
+    <td width="50%">
+      <img src="project/sift_evaluation/figures/matching_full/sift_average_mma_curve.png" alt="SIFT MMA curve" width="100%">
+      <p align="center"><strong>SIFT</strong></p>
+    </td>
+    <td width="50%">
+      <img src="project/orb_evaluation/figures/matching_full/average_mma_curve.png" alt="ORB MMA curve" width="100%">
+      <p align="center"><strong>ORB</strong></p>
+    </td>
+  </tr>
+</table>
+
+### Average Match Counts
+
+<table>
+  <tr>
+    <td width="50%">
+      <img src="project/sift_evaluation/figures/matching_full/average_match_counts.png" alt="SIFT average match counts" width="100%">
+      <p align="center"><strong>SIFT</strong></p>
+    </td>
+    <td width="50%">
+      <img src="project/orb_evaluation/figures/matching_full/average_match_counts.png" alt="ORB average match counts" width="100%">
+      <p align="center"><strong>ORB</strong></p>
+    </td>
+  </tr>
+</table>
+
+### Average Match Quality
+
+<table>
+  <tr>
+    <td width="50%">
+      <img src="project/sift_evaluation/figures/matching_full/sift_average_quality.png" alt="SIFT average quality" width="100%">
+      <p align="center"><strong>SIFT</strong></p>
+    </td>
+    <td width="50%">
+      <img src="project/orb_evaluation/figures/matching_full/average_quality.png" alt="ORB average quality" width="100%">
+      <p align="center"><strong>ORB</strong></p>
+    </td>
+  </tr>
+</table>
+
 ---
 
 ## License
