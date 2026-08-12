@@ -8,6 +8,19 @@ from pathlib import Path
 import cv2
 import numpy as np
 
+
+# Matplotlib needs a writable cache directory in this environment.
+# MPLCONFIGDIR = Path("/private/tmp/matplotlib")
+# MPLCONFIGDIR.mkdir(parents=True, exist_ok=True)
+# os.environ["MPLCONFIGDIR"] = str(MPLCONFIGDIR)
+#
+# XDG_CACHE_HOME = Path("/private/tmp/codex-cache")
+# XDG_CACHE_HOME.mkdir(parents=True, exist_ok=True)
+# os.environ["XDG_CACHE_HOME"] = str(XDG_CACHE_HOME)
+#
+import matplotlib
+#
+# matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 
@@ -21,12 +34,13 @@ for path in (PROJECT_DIR, ORB_DIR):
 
 from data_loader import load_sequence_homography, load_sequence_image
 from feature_matching import (
-    create_orb,
     draw_matches,
     extract_features,
     match_features,
     mutual_best_matches,
 )
+
+from feature_extraction import create_orb
 
 
 DEFAULT_LIGHTING_SEQUENCE = "i_ajuntament"

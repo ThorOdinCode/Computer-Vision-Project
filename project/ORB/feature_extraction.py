@@ -51,7 +51,7 @@ it as unlimited
 """
 
 def create_orb(
-    nfeatures=100,
+    nfeatures=10000,
     scaleFactor=1.2,
     nlevels=8,
     edgeThreshold=31,
@@ -559,7 +559,7 @@ def process_dataset(
             "was not found."
         )
 
-    orb = create_orb()
+    orb = create_orbb()
 
     lighting_output = (
         output_dir / "lighting"
