@@ -40,14 +40,36 @@ DEFAULT_OUTPUT_DIR = PROJECT_DIR / "ORB" / "matching"
 # ORB
 # ============================================================
 
-def create_orb():
-    """Create the ORB detector."""
+def create_orb(
+    nfeatures=10000,
+    scaleFactor=1.2,
+    nlevels=8,
+    edgeThreshold=31,
+    firstLevel=0,
+    WTA_K=2,
+    scoreType=cv2.ORB_HARRIS_SCORE,
+    patchSize=31,
+    fastThreshold=20,
+):
+    """
+    Create an ORB detector.
+    """
 
     if hasattr(cv2, "ORB_create"):
-        return cv2.ORB_create()
+        return cv2.ORB_create(
+            nfeatures=nfeatures,
+            scaleFactor=scaleFactor,
+            nlevels=nlevels,
+            edgeThreshold=edgeThreshold,
+            firstLevel=firstLevel,
+            WTA_K=WTA_K,
+            scoreType=scoreType,
+            patchSize=patchSize,
+            fastThreshold=fastThreshold,
+        )
 
     raise RuntimeError(
-        "ORB is not available in this OpenCV installation."
+        "OpenCV was built without ORB support."
     )
 
 
