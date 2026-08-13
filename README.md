@@ -63,9 +63,9 @@ The generated full-benchmark summaries in this repository cover 580 reference/te
 
 - SIFT overall: precision `0.786`, recall `0.177`, MMA `0.763`.
 - ORB overall: precision `0.754`, recall `0.124`, MMA `0.717`.
-- Full sweep runtime in the generated summaries: SIFT about `200-300` seconds, ORB about `13-15` seconds.
+- Full sweep runtime in the generated summaries: SIFT about `450` seconds, ORB about `13-15` seconds.
 
-These figures capture the main trade-off of the project: SIFT is stronger geometrically, while ORB is much faster.
+These figures capture the main trade-off of the current project snapshot: SIFT is stronger geometrically, while ORB is much faster in the full sweep and still serves as a useful baseline.
 
 ## Repository Structure
 
@@ -201,6 +201,30 @@ The repository already includes representative figures and summaries produced by
 - `project/*_evaluation/figures/`: aggregated plots for the focused and full-benchmark evaluations.
 - `project/*_evaluation/results/`: CSV and JSON summaries from the full HPatches sweeps.
 
+## Final Takeaways
+
+- SIFT is the stronger geometric matcher in this project, with better precision, recall proxy, and MMA on the full benchmark sweep.
+- ORB remains a useful baseline, but in the current implementation it trades away recall and overall geometric quality.
+- Illumination changes are generally easier than wide viewpoint changes, especially for recall and match coverage.
+
+## Project Deliverables
+
+- Final report: the written submission that documents the dataset, methods, evaluation, and discussion.
+- Presentation deck: the slide deck used for the final class presentation.
+- Source code: the SIFT and ORB implementations, along with the evaluation scripts in `project/`.
+- Generated results: the figures, CSV files, and JSON summaries already included in the repository.
+
+## Reproducibility
+
+- The figures and summary files in `project/*_evaluation/` were generated from the scripts in this repository using the HPatches datasets described above.
+- Running the extraction, matching, and full evaluation scripts again with the same dataset paths should regenerate the same outputs or very close variants, depending on the environment and OpenCV build.
+- If the HPatches datasets live somewhere else on your machine, update `project/data_loader.py` before rerunning the scripts.
+
+## Future Work
+
+- Additional feature pipelines such as AKAZE, BRISK, or tuned ORB variants could be added for a broader comparison.
+- The current scripts could also be extended with more aggregate plots, parameter sweeps, or a small command-line wrapper for batch reruns.
+
 ## Report Structure
 
 ```text
@@ -251,7 +275,7 @@ The repository already includes representative figures and summaries produced by
 
 ## Results Summary
 
-These plots give a quick visual read on the full-benchmark behavior of the two pipelines. SIFT is generally stronger geometrically, while ORB stays lighter and faster to compute.
+These plots give a quick visual read on the full-benchmark behavior of the two pipelines. SIFT is generally stronger geometrically, while ORB has lower recall and a much shorter full-sweep runtime.
 
 ### Mean Matching Accuracy
 
