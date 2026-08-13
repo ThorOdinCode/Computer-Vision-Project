@@ -63,7 +63,7 @@ The generated full-benchmark summaries in this repository cover 580 reference/te
 
 - SIFT overall: precision `0.786`, recall `0.177`, MMA `0.763`.
 - ORB overall: precision `0.754`, recall `0.124`, MMA `0.717`.
-- Full sweep runtime in the generated summaries: SIFT about `450` seconds, ORB about `13-15` seconds.
+- Full sweep runtime in the generated summaries: SIFT about `200-400` seconds, ORB about `13-15` seconds.
 
 These figures capture the main trade-off of the current project snapshot: SIFT is stronger geometrically, while ORB is much faster in the full sweep and still serves as a useful baseline.
 
@@ -188,8 +188,6 @@ Run the scripts from the repository root.
 - `python project/sift_evaluation/full_matching_evaluation.py`
 - `python project/orb_evaluation/matching_evaluation.py`
 - `python project/orb_evaluation/full_matching_evaluation.py`
-
-Each script exposes additional CLI flags such as `--lighting-sequence`, `--viewpoint-sequence`, `--reference-image`, `--test-image`, `--ratio`, `--top-k`, and `--output-dir`. Use `--help` to see the full list.
 
 ## Generated Outputs
 
