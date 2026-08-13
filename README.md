@@ -218,10 +218,6 @@ The repository already includes representative figures and summaries produced by
 - Running the extraction, matching, and full evaluation scripts again with the same dataset paths should regenerate the same outputs or very close variants, depending on the environment and OpenCV build.
 - If the HPatches datasets live somewhere else on your machine, update `project/data_loader.py` before rerunning the scripts.
 
-## Future Work
-
-- Additional feature pipelines such as AKAZE, BRISK, or tuned ORB variants could be added for a broader comparison.
-- The current scripts could also be extended with more aggregate plots, parameter sweeps, or a small command-line wrapper for batch reruns.
 
 ## Report Structure
 
