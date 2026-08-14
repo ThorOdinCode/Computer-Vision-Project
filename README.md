@@ -103,7 +103,11 @@ The tree below reflects the main source, evaluation, and generated-output folder
 │       ├── figures/
 │       └── results/
 ├── report/
-│   └── test.txt
+│   └── project_report.pdf
+├── presentation/
+│   └── project_presentation.pdf
+├── recording/
+│   └── project_recording.mp4
 └── README.md
 ```
 
