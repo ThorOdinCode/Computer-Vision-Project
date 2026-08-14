@@ -6,7 +6,7 @@
 
 # A Comparative Study of SIFT and ORB for Wide-Baseline Feature Matching
 
-YouTube Video Link: https://www.youtube.com/watch?v=ND4U4-sqfbU
+YouTube Video Presentation Link: https://www.youtube.com/watch?v=ND4U4-sqfbU
   
 ## Authors / Group Members
 
