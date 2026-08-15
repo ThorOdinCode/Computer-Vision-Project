@@ -109,7 +109,7 @@ The tree below reflects the main source, evaluation, and generated-output folder
 ├── presentation/
 │   └── project_presentation.pdf
 ├── recording/
-│   └── project_recording.mp4
+│   └── project_recording.md
 └── README.md
 ```
 
